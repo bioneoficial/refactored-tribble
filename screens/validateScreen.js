@@ -46,7 +46,11 @@ function ValidateScreen({ route }) {
                 if (!response.ok) {
                     throw new Error("HTTP status " + response.status);
                 }
-                navigation.navigate('Login');
+                navigation.reset({
+                    index: 0,
+                    routes: [{ name: 'Login' }],
+                });
+                // navigation.navigate('Login');
             })
             .catch(error => {
                 console.error("Failed to perform request: " + error.name + " Message: " + error.message);

@@ -15,7 +15,7 @@ function LoginScreen({ navigation }) {
 
     useEffect(() => {
         if (showWebView) {
-            setTimeout(() => setWebViewUrl(loginUrl), 3000);
+            setTimeout(() => setWebViewUrl(loginUrl), 2000);
         }
     }, [showWebView])
 
