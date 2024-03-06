@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import { Button, View, StyleSheet } from 'react-native';
 import WebView from 'react-native-webview';
 
 function LoginScreen({ navigation }) {
     const [showWebView, setShowWebView] = useState(false);
+    const webViewRef = useRef(null)
+    const [webViewUrl, setWebViewUrl] = useState('https://homlogin.sso2.ibama.serpro.gov.br/cas/logout'); // gambiarra do logout antes de login, rever isso depois da POC
 
     const handleButtonPress = () => {
         setShowWebView(true);
     }
 
-    const url = "https://homlogin.sso2.ibama.serpro.gov.br/cas/login?service=http://recoopera.test/";
+    const loginUrl = "https://homlogin.sso2.ibama.serpro.gov.br/cas/login?service=http://recoopera.test/";
+
+    useEffect(() => {
+        if (showWebView) {
+            setTimeout(() => setWebViewUrl(loginUrl), 3000);
+        }
+    }, [showWebView])
 
     const onNavigationStateChange = (navState) => {
         console.log(navState.url);
@@ -27,14 +35,16 @@ function LoginScreen({ navigation }) {
 
         if (nativeEvent.url && nativeEvent.url.includes('?ticket=')) {
             const ticket = nativeEvent.url.split('?ticket=')[1];
-            console.log('Ticket:', ticket);
+            console.log('Ticket: ', ticket);
             navigation.navigate('Ticket', { ticket });
             setShowWebView(false);
+        } else {
+            webViewRef.current.injectJavaScript(`window.location.href = "${loginUrl}";`);
         }
     }
 
     if (showWebView) {
-        return <WebView source={{ uri: url }} onNavigationStateChange={onNavigationStateChange} onError={handleError} />;
+        return <WebView ref={webViewRef} source={{ uri: webViewUrl }} onNavigationStateChange={onNavigationStateChange} onError={handleError} />;
     }
 
     return (

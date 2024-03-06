@@ -2034,7 +2034,7 @@
   resolved "https://registry.npmjs.org/@react-navigation/elements/-/elements-1.3.26.tgz"
   integrity sha512-9rSY7MD6etU3M3j/OYUvtg4eBqABlkS39iJwwQheE89pSa9QyvXbJSsz/bUBEjFWwsOYxTVzj27bc7ulrDVWgw==
 
-"@react-navigation/native@^6.0.0":
+"@react-navigation/native@^6.0.0", "@react-navigation/native@^6.1.14":
   version "6.1.14"
   resolved "https://registry.npmjs.org/@react-navigation/native/-/native-6.1.14.tgz"
   integrity sha512-nCrVi4cHXx6VnXV8fj+lLb8zjLt1LZkpxudhfV/i1KstgaoGzh9FgFDIvbWONGE8f403FIsYUnZxKHvN7asp1w==

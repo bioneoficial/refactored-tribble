@@ -6,6 +6,7 @@
     "start": "expo start"
   },
   "dependencies": {
+    "@react-navigation/native": "^6.1.14",
     "@react-navigation/stack": "^6.3.25",
     "expo": "^50.0.8",
     "react": "18.2.0",
